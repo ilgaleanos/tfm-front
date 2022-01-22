@@ -1,0 +1,23 @@
+.login {
+  position: absolute;
+  background-color: whitesmoke;
+  height: 100%;
+  width: 100%;
+}
+
+.login-img {
+  margin-top: 15vh;
+}
+
+.form {
+  margin-top: -5px;
+  background-color: #fff;
+  padding: 0px 25px 20px 10px;
+  align-content: center;
+  align-items: center;
+}
+
+.MuiButton-root {
+  background-color: #ff914d !important;
+  color: #ff914d;
+}
