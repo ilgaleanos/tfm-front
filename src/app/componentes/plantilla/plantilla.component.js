@@ -6,13 +6,16 @@ import { Container, Row, Col } from 'react-grid-system';
 import NavBar from '../navbar/navbar.component';
 
 
+import "./plantilla.styles.css"
+
+
 
 function Plantilla(props) {
     /**
      * render
      */
     return (
-        <Container fluid className="contenido">
+        <Container fluid className={props.className ? props.className : "contenido" }>
             {/* navegación */}
             <Row >
                 <Col xs={12}>

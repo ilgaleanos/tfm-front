@@ -8,6 +8,7 @@ import Container from '@mui/material/Container';
 
 import './navbar.styles.css'
 import {
+    cambioRutaPermisos,
     logout
 } from './navbar.logic'
 
@@ -22,17 +23,17 @@ function NavBar() {
                 <Container disableGutters maxWidth="xl">
                     <Toolbar disableGutters>
                         {/* LOGO */}
-                        <Box sx={{ display: { xs: 'none', md: 'block' } }} onClick={() => { navegar('/inicio') }}>
+                        <Box sx={{ display: { xs: 'none', md: 'block' } }} onClick={() => { cambioRutaPermisos(navegar, '/inicio') }}>
                             <img className="logo-menu" alt="Siriviendo a colombia" src={process.env.PUBLIC_URL + '/static/img/logo512_inv.png'} />
                         </Box>
 
 
                         {/* MENU */}
                         <Box sx={{ flexGrow: 1, display: { xs: 'block', md: 'flex' } }}>
-                            <button className="boton-primario" key="Usuarios" onClick={() => { navegar('/usuarios') }} sx={{ my: 2, display: 'block' }}>
+                            <button className="boton-primario" key="Usuarios" onClick={() => { cambioRutaPermisos(navegar, '/usuarios') }} sx={{ my: 2, display: 'block' }}>
                                 <Box sx={{ display: { xs: 'none', md: 'inline' } }}><i className="fas fa-users"></i></Box> &nbsp; Usuarios
                             </button>
-                            <button className="boton-primario" key="Dashboard" onClick={() => { navegar('/dashboard') }} sx={{ my: 2, display: 'block' }}>
+                            <button className="boton-primario" key="Dashboard" onClick={() => { cambioRutaPermisos(navegar, '/dashboard') }} sx={{ my: 2, display: 'block' }}>
                                 <Box sx={{ display: { xs: 'none', md: 'inline' } }}><i className="fas fa-tachometer-alt"></i></Box> &nbsp; Dashboard
                             </button>
                         </Box>

@@ -1,4 +1,3 @@
-
 /**
  * Variables de memoria cache
  */
@@ -11,7 +10,7 @@ let memoryGlobal = {};
 export class StorageService {
 
     /*========================================================================================================================
-    *  Manejador del  SessionStorage
+    *  Manejador del SessionStorage
     *========================================================================================================================*/
 
     _setMemory(mKey, data) {
@@ -48,7 +47,7 @@ export class StorageService {
 
 
     /*========================================================================================================================
-    *  Manejador del  LocalStorage
+    *  Manejador del LocalStorage
     *========================================================================================================================*/
 
     _setMemoryGlobal(mKey, data) {
@@ -71,5 +70,18 @@ export class StorageService {
             return data;
         }
         return memoryGlobal[mKey];
+    }
+
+
+    /*========================================================================================================================
+    *  Manejador de permisos
+    *========================================================================================================================*/
+
+    getPermisos() {
+        let permisos = {};
+        this.getItem('p')?.permisos?.forEach(permiso => {
+            permisos['p-' + permiso.permiso_id] = permiso.alcance
+        });
+        return permisos;
     }
 }

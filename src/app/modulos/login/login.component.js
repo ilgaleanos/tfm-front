@@ -21,7 +21,7 @@ function Login() {
     /**
      * Hooks para el correo
      */
-    const [correo, setCorreo] = useState("");
+    const [correo, setCorreo] = useState("ilgaleanos@gmail.com");
     const [invalido, setInvalido] = useState(false);
     const [cargando, setCargando] = useState(false);
 

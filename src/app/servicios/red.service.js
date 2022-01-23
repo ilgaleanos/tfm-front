@@ -42,3 +42,15 @@ export const AxiosCache = (url) => {
             .catch((err) => { reject(err) })
     })
 }
+
+
+export const AxiosPermisos = ()=>{
+    return new Promise((resolve, reject) => {
+        Axios.get('/v1/sesion')
+        .then((resp) => {
+            storeService.setItem('p', resp.data);
+            resolve(resp);
+        })
+        .catch((err) => { reject(err) })
+    })
+}

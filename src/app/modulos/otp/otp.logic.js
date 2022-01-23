@@ -23,25 +23,15 @@ const ingresar = (otp, token, setCargando, setInvalido, navegar) => {
             setCargando(false);
             logger.debug('ingresar', resp.data);
 
+            storageService.setItem('user', resp.data);
             if (resp.data.nombre) {
-
-                Axios.get('/v1/sesion')
-                    .then((resp2) => {
-                        storageService.setItem('p', resp2.data);
-                        storageService.setItem('user', resp.data);
-                        storageService.removeItem('uuid');
-                        window.location = '/inicio';
-                    })
-                    .catch((err) => {
-                        logger.error(err);
-                        setCargando(false);
-                    })
-                    
+                storageService.removeItem('uuid');
+                window.location = '/inicio';
             }
             setInvalido(true);
         })
         .catch((err) => {
-            logger.error(err);
+            logger.error('ingresar', err);
             setCargando(false);
         })
 }

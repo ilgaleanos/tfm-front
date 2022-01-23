@@ -1,10 +1,21 @@
 import { LoggerService } from "../../servicios/logger.service"
-import { Axios } from "../../servicios/red.service"
+import { Axios, AxiosPermisos } from "../../servicios/red.service"
 import { StorageService } from "../../servicios/storage.service";
 
 
 const storageService = new StorageService();
 const logger = new LoggerService('navbar');
+
+
+
+/**
+ * Permisos del usuario
+ * @returns 
+ */
+const cambioRutaPermisos = (navegar, ruta) => {
+    AxiosPermisos();
+    navegar(ruta);
+}
 
 
 /**
@@ -26,5 +37,6 @@ const logout = () => {
  * Exportaciones
  */
 export {
+    cambioRutaPermisos,
     logout
 }

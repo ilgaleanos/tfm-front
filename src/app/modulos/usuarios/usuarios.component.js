@@ -8,25 +8,35 @@ import { configDataTables } from "../../componentes/datatables/datatables.logic"
 import './usuarios.styles.css'
 import {
     columnas,
-    cargarUsuarios
+    cargarUsuarios,
+    obtenerPermisos
 } from './usuarios.logic'
 
 
 function Usuarios() {
     const navegar = useNavigate();
-    
+    const permisos = obtenerPermisos();
+
     /**
      * Hooks para Usuarios
      */
     const [usuarios, setUsuarios] = useState([]);
-    
-    
+
+
     /**
-     * useEfects
-     */
+    * useEfects
+    */
     useEffect(() => {
         cargarUsuarios(setUsuarios, navegar);
     }, [navegar]);
+
+
+    /**
+     * Validamos los permisos
+     */
+    if (permisos['p-2'] % 2 !== 0) {
+        navegar('/inicio')
+    }
 
 
     /**

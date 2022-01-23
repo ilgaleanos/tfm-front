@@ -10,18 +10,6 @@
   height: auto;
 }
 
-@media (max-width: 600px) {
-  .contenido {
-    padding-top: 120px;
-  }
-}
-
-@media (min-width: 600px) {
-  .contenido {
-    padding-top: 80px;
-  }
-}
-
 th.sortable {
   color: #5d4037;
 }

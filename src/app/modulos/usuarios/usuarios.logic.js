@@ -14,7 +14,7 @@ const columnas = [
         key: 'id',
         text: 'ID',
         align: 'center',
-        className:'center',
+        className: 'center',
         sortable: true
     },
     {
@@ -69,6 +69,41 @@ const columnas = [
 ];
 
 /**
+ * 
+ */
+const agregarEditar = () => {
+    columnas.push({
+        key: 'action',
+        text: 'Accion',
+        className: 'center',
+        width: 100,
+        align: 'center',
+        sortable: false,
+        cell: record => {
+            return (
+                <Fragment>
+                    <span className="editar"
+                        onClick={() => navegacion('/usuario/' + record.id)}>
+                        <i className="fas fa-edit"></i>
+                    </span>
+                </Fragment>
+            );
+        }
+    })
+}
+
+
+
+/**
+ * Permisos del usuario
+ * @returns 
+ */
+const obtenerPermisos = () => {
+    return storeSerice.getPermisos()
+}
+
+
+/**
  * Llamada al api para cargar usuarios
  * 
  * @param {*} setUsuarios 
@@ -77,6 +112,15 @@ const columnas = [
 const cargarUsuarios = (setUsuarios, navegar) => {
     navegacion = navegar;
 
+    let permisos = obtenerPermisos();
+    if (permisos['p-2'] % 3 !== 0 && columnas.length === 6) {
+        columnas.pop()
+    }
+
+    if (permisos['p-2'] % 3 === 0 && columnas.length === 5) {
+        agregarEditar()
+    }
+
     setUsuarios(storeSerice.getItem('/v1/usuarios').usuarios || [])
     AxiosCache('/v1/usuarios')
         .then((resp) => {
@@ -84,7 +128,7 @@ const cargarUsuarios = (setUsuarios, navegar) => {
             setUsuarios(resp.data.usuarios);
         })
         .catch((err) => {
-            logger.error(err);
+            logger.error('cargarUsuarios', err);
         })
 }
 
@@ -94,5 +138,6 @@ const cargarUsuarios = (setUsuarios, navegar) => {
  */
 export {
     columnas,
-    cargarUsuarios
+    cargarUsuarios,
+    obtenerPermisos
 }

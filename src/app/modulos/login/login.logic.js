@@ -23,7 +23,7 @@ const ingresar = (correo, token, setCargando, navegar) => {
             navegar('/validar_otp');
         })
         .catch((err) => {
-            logger.error(err);
+            logger.error('ingresar', err);
             setCargando(false);
         })
 }
