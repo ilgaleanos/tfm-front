@@ -42,16 +42,16 @@ a.page-link:hover {
 
 .boton-primario {
   margin: 5px 15px 5px 15px;
-  background-color: #ff914d;
+  background-color: #5d4037;
   color: #fff;
   position: relative;
   display: inline-block;
   box-sizing: border-box;
-  border: none;
+  border: 1px solid gainsboro;
   border-radius: 4px;
   padding: 0 16px;
   min-width: 120px;
-  height: 50px;
+  height: 42px;
   vertical-align: middle;
   text-align: center;
   text-overflow: ellipsis;
@@ -70,6 +70,9 @@ a.page-link:hover {
     system-ui,
     -apple-system
   );
+  box-shadow: 0 2px 4px -1px rgba(140, 140, 140, 0.2),
+    0 4px 5px 0 rgba(140, 140, 140, 0.14),
+    0 1px 10px 0 rgba(140, 140, 140, 0.12);
 }
 
 .boton-primario::-moz-focus-inner {
