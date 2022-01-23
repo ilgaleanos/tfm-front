@@ -52,8 +52,6 @@ const ingresar = (otp, token, setCargando, setInvalido, navegar) => {
  * @param {*} event 
  */
 const generarToken = (event, otp, setInvalido, setCargando, navegar) => {
-    console.log(1, navegar);
-
     event.preventDefault();
     setCargando(true)
 

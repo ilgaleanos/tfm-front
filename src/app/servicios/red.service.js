@@ -31,3 +31,14 @@ Axios.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
+
+export const AxiosCache = (url) => {
+    return new Promise((resolve, reject) => {
+        Axios.get(url)
+            .then((resp) => {
+                storeService.setItem(url, resp.data);
+                resolve(resp);
+            })
+            .catch((err) => { reject(err) })
+    })
+}

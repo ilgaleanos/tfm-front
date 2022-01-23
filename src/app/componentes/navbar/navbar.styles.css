@@ -1,8 +1,9 @@
 .logo-menu {
-  width: 7vh;
+  width: 8.5vh;
   min-width: 60px;
   margin-right: 50px;
   padding: 5px 5px 5px 3vh;
+  cursor: pointer;
 }
 
 .fas {

@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ReactDatatable from '@ashvin27/react-datatable';
 
 import Plantilla from '../../componentes/plantilla/plantilla.component';
+import { configDataTables } from "../../componentes/datatables/datatables.logic";
 
 import './usuarios.styles.css'
-import { } from './usuarios.logic'
+import {
+    columnas,
+    cargarUsuarios
+} from './usuarios.logic'
 
 
 function Usuarios() {
@@ -13,6 +18,15 @@ function Usuarios() {
     /**
      * Hooks para Usuarios
      */
+    const [usuarios, setUsuarios] = useState([]);
+
+
+    /**
+     * useEfects
+     */
+    useEffect(() => {
+        cargarUsuarios(setUsuarios, navegar);
+    }, []);
 
 
     /**
@@ -20,7 +34,13 @@ function Usuarios() {
      */
     return (
         <Plantilla titulo='Usuarios'>
-            Hola
+            Algunos comentarios acerca de los usuarios <br /><br />
+            <ReactDatatable
+                className='table table-bordered table-sm table-striped table-responsive-sm'
+                config={configDataTables}
+                records={usuarios}
+                columns={columnas}
+            />
         </Plantilla>
     );
 }
