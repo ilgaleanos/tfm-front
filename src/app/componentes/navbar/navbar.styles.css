@@ -1,0 +1,14 @@
+.logo-menu {
+  width: 7vh;
+  min-width: 60px;
+  margin-right: 50px;
+  padding: 5px 5px 5px 3vh;
+}
+
+.fas {
+  font-size: 1.3rem;
+}
+
+.derecha {
+  float: right;
+}

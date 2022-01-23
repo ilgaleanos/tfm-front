@@ -15,7 +15,7 @@ let storageService = new StorageService();
  * @param {*} token 
  * @param {*} setCargando 
  */
-const ingresar = (otp, token, setCargando,setInvalido,  navegar) => {
+const ingresar = (otp, token, setCargando, setInvalido, navegar) => {
     let uuid = storageService.getItem('uuid');
 
     Axios.post('/v1/generar_token', { 'otp': otp, 'captcha': token, 'uuid': uuid })
@@ -24,9 +24,19 @@ const ingresar = (otp, token, setCargando,setInvalido,  navegar) => {
             logger.debug('ingresar', resp.data);
 
             if (resp.data.nombre) {
-                storageService.setItem('user', resp.data);
-                storageService.removeItem('uuid');
-                window.location = '/inicio';
+
+                Axios.get('/v1/sesion')
+                    .then((resp2) => {
+                        storageService.setItem('p', resp2.data);
+                        storageService.setItem('user', resp.data);
+                        storageService.removeItem('uuid');
+                        window.location = '/inicio';
+                    })
+                    .catch((err) => {
+                        logger.error(err);
+                        setCargando(false);
+                    })
+                    
             }
             setInvalido(true);
         })

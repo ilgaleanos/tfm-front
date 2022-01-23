@@ -20,4 +20,5 @@
 .MuiButton-root {
   background-color: #ff914d !important;
   color: #ff914d;
+  height: 50px;
 }

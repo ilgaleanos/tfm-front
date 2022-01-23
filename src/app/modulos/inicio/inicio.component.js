@@ -1,25 +1,44 @@
-import React, { useEffect, useState } from 'react';
-
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
+import React from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import { Container, Row, Col } from 'react-grid-system';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
+
+import NavBar from '../../componentes/navbar/navbar.component';
+
+
+import './inicio.styles.css'
+import './inicio.logic'
+
+
 
 function Inicio() {
-    const [contador, setContador] = useState(0);
-
     return (
         <div>
-            <AppBar position="static">
-                <Toolbar variant="dense">
-                    <IconButton edge="start" color="secondary" aria-label="menu" sx={{ mr: 2 }}>
-                        {/* <MenuIcon /> */}
-                    </IconButton>
-                    <Typography variant="h6" color="inherit" component="div">
-                        Sistema de visualización
-                    </Typography>
-                </Toolbar>
-            </AppBar>
+            <Container fluid className="contenido">
+                {/* navegación */}
+                <Row >
+                    <Col xs={12}>
+                        <NavBar />
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col xs={12}>
+                        <Card >
+                            <CardContent>
+                                <Typography variant="h5" component="div">
+                                    Algún título de presentación
+                                </Typography>
+                                <br />
+                                <Typography variant="body2" component="div">
+                                    Algún contenido de presentación
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Col>
+                </Row>
+            </Container>
         </div>
     );
 }
