@@ -1,7 +1,9 @@
 import { Fragment } from "react";
+
 import { LoggerService } from "../../servicios/logger.service";
 import { AxiosCache } from "../../servicios/red.service";
 import { StorageService } from "../../servicios/storage.service";
+import { formatearDatetime } from "../../componentes/datatables/datatables.logic";
 
 let navegacion;
 const logger = new LoggerService('usuarios');
@@ -9,52 +11,57 @@ const storeSerice = new StorageService();
 
 const columnas = [
     {
-        key: "nombre",
-        text: "Nombre",
-        align: "left",
+        key: 'id',
+        text: 'ID',
+        align: 'center',
+        className:'center',
         sortable: true
     },
     {
-        key: "apellido",
-        text: "Apellido",
-        align: "left",
+        key: 'nombre',
+        text: 'Nombre',
+        align: 'left',
         sortable: true
     },
     {
-        key: "correo",
-        text: "Correo",
-        align: "left",
+        key: 'apellido',
+        text: 'Apellido',
+        align: 'left',
         sortable: true
     },
     {
-        key: "ultimo_ingreso",
-        text: "Último ingreso",
-        align: "left",
+        key: 'correo',
+        text: 'Correo',
+        align: 'left',
+        sortable: true
+    },
+    {
+        key: 'ultimo_ingreso',
+        text: 'Último ingreso',
+        align: 'left',
         sortable: true,
         cell: record => {
             return (
                 <Fragment>
-                    {
-                        (new Date(record.ultimo_ingreso).toDateString('es_CO')) + "  " + (new Date(record.ultimo_ingreso).toLocaleTimeString())}
+                    {formatearDatetime(record.ultimo_ingreso)}
                 </Fragment>
             );
         }
     },
     {
-        key: "action",
-        text: "Action",
-        className: "action",
+        key: 'action',
+        text: 'Accion',
+        className: 'center',
         width: 100,
-        align: "left",
+        align: 'center',
         sortable: false,
         cell: record => {
             return (
                 <Fragment>
-                    <button
-                        className="btn btn-sm"
+                    <span className="editar"
                         onClick={() => navegacion('/usuario/' + record.id)}>
                         <i className="fas fa-edit"></i>
-                    </button>
+                    </span>
                 </Fragment>
             );
         }
@@ -73,6 +80,7 @@ const cargarUsuarios = (setUsuarios, navegar) => {
     setUsuarios(storeSerice.getItem('/v1/usuarios').usuarios || [])
     AxiosCache('/v1/usuarios')
         .then((resp) => {
+            logger.debug('cargarUsuarios', resp.data);
             setUsuarios(resp.data.usuarios);
         })
         .catch((err) => {

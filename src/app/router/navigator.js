@@ -16,6 +16,7 @@ import Login from '../modulos/login/login.component';
 import Otp from '../modulos/otp/otp.component';
 import Usuarios from '../modulos/usuarios/usuarios.component';
 import Dashboard from '../modulos/dashboard/dashboard.component';
+import Usuario from '../modulos/usuario/usuario.component';
 
 
 
@@ -72,6 +73,7 @@ function Navigator() {
           <Route path="/validar_otp" element={invalidarLogin(Otp)}></Route>
           <Route path="/inicio" element={validarUsuario(Inicio)}></Route>
           <Route path="/usuarios" element={validarUsuario(Usuarios)}></Route>
+          <Route path="/usuario/:id" element={validarUsuario(Usuario)}></Route>
           <Route path="/dashboard" element={validarUsuario(Dashboard)}></Route>
         </Routes>
       </BrowserRouter>

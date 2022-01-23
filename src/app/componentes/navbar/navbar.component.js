@@ -23,7 +23,7 @@ function NavBar() {
                     <Toolbar disableGutters>
                         {/* LOGO */}
                         <Box sx={{ display: { xs: 'none', md: 'block' } }} onClick={() => { navegar('/inicio') }}>
-                            <img className="logo-menu" alt="Siriviendo a colombia" src={process.env.PUBLIC_URL + 'static/img/logo512_inv.png'} />
+                            <img className="logo-menu" alt="Siriviendo a colombia" src={process.env.PUBLIC_URL + '/static/img/logo512_inv.png'} />
                         </Box>
 
 

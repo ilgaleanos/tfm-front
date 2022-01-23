@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col } from 'react-grid-system';
-
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
@@ -22,7 +21,7 @@ function Login() {
     /**
      * Hooks para el correo
      */
-    const [correo, setCorreo] = useState("ilgaleanos@gmail.com");
+    const [correo, setCorreo] = useState("");
     const [invalido, setInvalido] = useState(false);
     const [cargando, setCargando] = useState(false);
 
@@ -34,7 +33,7 @@ function Login() {
         <Container fluid className="login">
             <Row justify="center" align="center">
                 <Col xs={10} sm={7} md={6} lg={4} xxl={3} justify="center" align="center">
-                    <img className="img-responsive login-img" alt="Siriviendo a colombia" src={process.env.PUBLIC_URL + 'static/img/logo.png'} />
+                    <img className="img-responsive login-img" alt="Siriviendo a colombia" src={process.env.PUBLIC_URL + '/static/img/logo.png'} />
                 </Col>
             </Row>
             <Row justify="center" align="center">

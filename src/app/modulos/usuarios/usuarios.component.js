@@ -14,19 +14,19 @@ import {
 
 function Usuarios() {
     const navegar = useNavigate();
-
+    
     /**
      * Hooks para Usuarios
      */
     const [usuarios, setUsuarios] = useState([]);
-
-
+    
+    
     /**
      * useEfects
      */
     useEffect(() => {
         cargarUsuarios(setUsuarios, navegar);
-    }, []);
+    }, [navegar]);
 
 
     /**

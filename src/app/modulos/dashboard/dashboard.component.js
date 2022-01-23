@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 import Plantilla from '../../componentes/plantilla/plantilla.component';
 
@@ -8,7 +8,7 @@ import { } from './dashboard.logic'
 
 
 function Dashboard() {
-    const navegar = useNavigate();
+    // const navegar = useNavigate();
 
     /**
      * Hooks para dashboard

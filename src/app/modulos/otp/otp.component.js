@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col } from 'react-grid-system';
-
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
@@ -34,7 +33,7 @@ function Otp() {
         <Container fluid className="otp">
             <Row justify="center" align="center">
                 <Col xs={10} sm={7} md={6} lg={4} xxl={3} justify="center" align="center">
-                    <img className="img-responsive otp-img" alt="Siriviendo a colombia" src={process.env.PUBLIC_URL + 'static/img/logo.png'} />
+                    <img className="img-responsive otp-img" alt="Siriviendo a colombia" src={process.env.PUBLIC_URL + '/static/img/logo.png'} />
                 </Col>
             </Row>
             <Row justify="center" align="center">
