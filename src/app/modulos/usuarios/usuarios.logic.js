@@ -7,7 +7,7 @@ import { formatearDatetime } from "../../componentes/datatables/datatables.logic
 
 let navegacion;
 const logger = new LoggerService('usuarios');
-const storeSerice = new StorageService();
+const storeService = new StorageService();
 
 const columnas = [
     {
@@ -47,24 +47,6 @@ const columnas = [
                 </Fragment>
             );
         }
-    },
-    {
-        key: 'action',
-        text: 'Accion',
-        className: 'center',
-        width: 100,
-        align: 'center',
-        sortable: false,
-        cell: record => {
-            return (
-                <Fragment>
-                    <span className="editar"
-                        onClick={() => navegacion('/usuario/' + record.id)}>
-                        <i className="fas fa-edit"></i>
-                    </span>
-                </Fragment>
-            );
-        }
     }
 ];
 
@@ -72,6 +54,8 @@ const columnas = [
  * 
  */
 const agregarEditar = () => {
+    let permisos = obtenerPermisos();
+
     columnas.push({
         key: 'action',
         text: 'Accion',
@@ -80,14 +64,32 @@ const agregarEditar = () => {
         align: 'center',
         sortable: false,
         cell: record => {
-            return (
-                <Fragment>
-                    <span className="editar"
-                        onClick={() => navegacion('/usuario/' + record.id)}>
-                        <i className="fas fa-edit"></i>
-                    </span>
-                </Fragment>
-            );
+            if (permisos['p-2'] % 7 === 0) {
+                return (
+                    <Fragment>
+                        <span className="editar"
+                            onClick={() => navegacion('/usuario/' + record.id)}>
+                            <i className="fas fa-edit"></i>
+                        </span>
+                        &nbsp;&nbsp;&nbsp;
+                        <span className="eliminar"
+                            onClick={() => navegacion('/usuario_eliminar/' + record.id)}>
+                            <i className="fas fa-trash"></i>
+                        </span>
+                    </Fragment>
+                )
+            }
+
+            if (permisos['p-2'] % 5 === 0) {
+                return (
+                    <Fragment>
+                        <span className="editar"
+                            onClick={() => navegacion('/usuario/' + record.id)}>
+                            <i className="fas fa-edit"></i>
+                        </span>
+                    </Fragment>
+                )
+            }
         }
     })
 }
@@ -99,7 +101,7 @@ const agregarEditar = () => {
  * @returns 
  */
 const obtenerPermisos = () => {
-    return storeSerice.getPermisos()
+    return storeService.getPermisos()
 }
 
 
@@ -113,15 +115,15 @@ const cargarUsuarios = (setUsuarios, navegar) => {
     navegacion = navegar;
 
     let permisos = obtenerPermisos();
-    if (permisos['p-2'] % 3 !== 0 && columnas.length === 6) {
+    if (permisos['p-2'] % 5 !== 0 && columnas.length === 6) {
         columnas.pop()
     }
 
-    if (permisos['p-2'] % 3 === 0 && columnas.length === 5) {
+    if (permisos['p-2'] % 5 === 0 && columnas.length === 5) {
         agregarEditar()
     }
 
-    setUsuarios(storeSerice.getItem('/v1/usuarios').usuarios || [])
+    setUsuarios(storeService.getItem('/v1/usuarios').usuarios || [])
     AxiosCache('/v1/usuarios')
         .then((resp) => {
             logger.debug('cargarUsuarios', resp.data);

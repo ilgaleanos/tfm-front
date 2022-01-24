@@ -17,6 +17,8 @@ import Otp from '../modulos/otp/otp.component';
 import Usuarios from '../modulos/usuarios/usuarios.component';
 import Dashboard from '../modulos/dashboard/dashboard.component';
 import Usuario from '../modulos/usuario/usuario.component';
+import UsuarioNuevo from '../modulos/usuario_nuevo/usuario_nuevo.component';
+import UsuarioEliminar from '../modulos/usuario_eliminar/usuario_eliminar.component';
 
 
 
@@ -74,6 +76,8 @@ function Navigator() {
           <Route path="/inicio" element={validarUsuario(Inicio)}></Route>
           <Route path="/usuarios" element={validarUsuario(Usuarios)}></Route>
           <Route path="/usuario/:id" element={validarUsuario(Usuario)}></Route>
+          <Route path="/usuario_nuevo" element={validarUsuario(UsuarioNuevo)}></Route>
+          <Route path="/usuario_eliminar/:id" element={validarUsuario(UsuarioEliminar)}></Route>
           <Route path="/dashboard" element={validarUsuario(Dashboard)}></Route>
         </Routes>
       </BrowserRouter>

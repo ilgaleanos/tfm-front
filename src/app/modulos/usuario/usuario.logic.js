@@ -24,10 +24,18 @@ const cargarUsuario = (id, setUsuario) => {
         })
 }
 
+/**
+ * Permisos del usuario
+ * @returns 
+ */
+ const obtenerPermisos = () => {
+    return storeSerice.getPermisos()
+}
 
 /**
  * Exportaciones
  */
 export {
-    cargarUsuario
+    cargarUsuario,
+    obtenerPermisos
 }

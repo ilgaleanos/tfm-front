@@ -1,4 +1,4 @@
-import { Axios } from '../../servicios/red.service'
+import { Axios, AxiosPermisos } from '../../servicios/red.service'
 import { StorageService } from '../../servicios/storage.service'
 import { LoggerService } from '../../servicios/logger.service'
 
@@ -25,8 +25,12 @@ const ingresar = (otp, token, setCargando, setInvalido, navegar) => {
 
             storageService.setItem('user', resp.data);
             if (resp.data.nombre) {
-                storageService.removeItem('uuid');
-                window.location = '/inicio';
+                AxiosPermisos().then((resp) => {
+                    if (resp.data?.permisos) {
+                        storageService.removeItem('uuid');
+                        setTimeout(() => { window.location = '/inicio'; }, 250);
+                    }
+                });
             }
             setInvalido(true);
         })

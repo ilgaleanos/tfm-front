@@ -1,28 +1,31 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, Fragment } from "react";
 import { Row, Col } from 'react-grid-system';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
 
-import Plantilla from "../../../componentes/plantilla/plantilla.component";
-import Alerta from "../../../componentes/alerta/alerta.component";
+
+import Alerta from "../../componentes/alerta/alerta.component";
+import Plantilla from "../../componentes/plantilla/plantilla.component";
+
 
 import {
-    fijarCorreo,
+    obtenerPermisos,
     fijarCampo,
-    actualizarUsuario
-} from './editar.logic'
+    fijarCorreo,
+    crearUsuario
+} from "./usuario_nuevo.logic";
 
 
-export default function EditarUsuario(props) {
 
-    const { usuario_datos } = props;
+export default function UsuarioNuevo() {
+    const permisos = obtenerPermisos();
 
-
+    
     /**
      * Hooks para Usuarios
      */
-    const [usuario, setUsuario] = useState({ ...usuario_datos });
+    const [usuario, setUsuario] = useState({ nombre: '', apellido: '', correo: '' });
     const [form, setForm] = useState({
         correo: false,
         nombre: false,
@@ -34,15 +37,20 @@ export default function EditarUsuario(props) {
     const [respuesta, setRespuesta] = useState("");
 
 
+    /**
+     * Validamos los permisos
+     */
+    if (!permisos['p-2'] || permisos['p-2'] % 3 !== 0) {
+        return null
+    }
+
     return (
-        <Plantilla className='seccion' titulo='Editar usuario'>
-            {/* SECCION EDITAR */}
+        <Plantilla className="contenido" titulo="Crear usuario" >
             <Row>
                 <Col xs={12}>
-                    <p className="descripcion"> En el siguiente formulario puede editar los datos básicos del usuario.</p>
+                    <p className="descripcion"> Complete los campos para crear el nuevo usuario.</p>
                 </Col>
             </Row>
-            <br />
 
 
             {/* ALERTAS */}
@@ -63,7 +71,7 @@ export default function EditarUsuario(props) {
             <Row justify="center" align="center">
                 <Col xs={10} sm={7} md={6} lg={4} xxl={3} justify="center" align="center" >
 
-                    <form onSubmit={(event) => { actualizarUsuario(event, usuario, form, setCargando, setSeveridad, setRespuesta) }} className="form">
+                    <form onSubmit={(event) => { crearUsuario(event, usuario, setUsuario, form, setCargando, setSeveridad, setRespuesta) }} className="form">
 
                         {/* CORREO */}
                         <FormControl sx={{ m: 1, width: '100%' }} variant="outlined">
@@ -105,17 +113,17 @@ export default function EditarUsuario(props) {
                         <FormControl sx={{ m: 1, width: '100%' }} variant="outlined">
                             {cargando ?
                                 <Button className="button" variant="contained" type="submit" disabled>
-                                    Editando  &nbsp;<i className="fas fa-cog fa-spin"></i>
+                                    Creando  &nbsp;<i className="fas fa-cog fa-spin"></i>
                                 </Button>
                                 :
                                 <Button className="button" variant="contained" type="submit">
-                                    Editar
+                                    Crear
                                 </Button>
                             }
                         </FormControl>
                     </form>
                 </Col>
             </Row>
-        </Plantilla>
-    );
+        </Plantilla >
+    )
 }

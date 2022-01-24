@@ -14,7 +14,7 @@ const logger = new LoggerService('navbar');
  */
 const cambioRutaPermisos = (navegar, ruta) => {
     AxiosPermisos();
-    navegar(ruta);
+    navegar(ruta)
 }
 
 

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { Grid } from '@mui/material';
+import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import ReactDatatable from '@ashvin27/react-datatable';
+
 
 import Plantilla from '../../componentes/plantilla/plantilla.component';
 import { configDataTables } from "../../componentes/datatables/datatables.logic";
@@ -11,6 +14,7 @@ import {
     cargarUsuarios,
     obtenerPermisos
 } from './usuarios.logic'
+import { Button } from '@mui/material';
 
 
 function Usuarios() {
@@ -34,8 +38,8 @@ function Usuarios() {
     /**
      * Validamos los permisos
      */
-    if (permisos['p-2'] % 2 !== 0) {
-        navegar('/inicio')
+    if (!permisos['p-2'] || permisos['p-2'] % 2 !== 0) {
+        return null
     }
 
 
@@ -51,6 +55,16 @@ function Usuarios() {
                 records={usuarios}
                 columns={columnas}
             />
+            <br />
+
+            {permisos['p-2'] % 2 === 0 ?
+                <Grid container justifyContent="flex-end">
+                    <Link to="/usuario_nuevo" >
+                        <Button className="button" variant="contained">
+                            Crear usuario &nbsp; <i className="fas fa-user-plus" />
+                        </Button>
+                    </Link>
+                </Grid> : null}
         </Plantilla>
     );
 }

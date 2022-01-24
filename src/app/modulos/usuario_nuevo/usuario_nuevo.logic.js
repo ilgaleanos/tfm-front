@@ -1,8 +1,12 @@
-import { LoggerService } from "../../../servicios/logger.service";
-import { Axios } from "../../../servicios/red.service";
+import { LoggerService } from "../../servicios/logger.service"
+import { StorageService } from "../../servicios/storage.service"
+import { Axios } from "../../servicios/red.service";
 
 
-const logger = new LoggerService('usuarios');
+const logger = new LoggerService('NuevoUsuario');
+const storeService = new StorageService()
+
+
 let regexp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 
@@ -53,40 +57,55 @@ const fijarCampo = (event, usuario, setUsuario, form, setForm) => {
  * @param {*} form 
  * @param {*} setCargando 
  */
-const actualizarUsuario = (event, usuario, form, setCargando, setSeveridad, setRespuesta) => {
+const crearUsuario = (event, usuario, setUsuario, form, setCargando, setSeveridad, setRespuesta) => {
     event.preventDefault();
     setCargando(true);
 
     for (let key in form) {
-        if (form[key]) {
+        if (form[key] || usuario.correo.length < 2 || usuario.nombre.length < 2 || usuario.correo.length < 2) {
             setCargando(false);
             return;
         }
     }
 
-    Axios.put('/v1/usuarios', usuario)
+    Axios.post('/v1/usuarios', usuario)
         .then((resp) => {
             setCargando(false);
             logger.debug('actualizarUsuario', resp.data)
 
+            setUsuario({ nombre: '', apellido: '', correo: '' })
+
+
             setSeveridad('success');
-            setRespuesta('Usuario editado correctamente');
+            setRespuesta('Usuario creado correctamente');
         })
         .catch((err) => {
             setCargando(false);
             logger.error('actualizarUsuario', err)
-            
+
             setSeveridad('error');
-            setRespuesta('Ha ocurrido un error editado al usuario');
+            setRespuesta('Ha ocurrido un error creando al usuario');
         });
 }
 
 
+
 /**
- * Exportaciones
+ * Permisos del usuario
+ * @returns 
+ */
+const obtenerPermisos = () => {
+    return storeService.getPermisos()
+}
+
+
+/**
+ * Exportacion
  */
 export {
+    obtenerPermisos,
     fijarCorreo,
     fijarCampo,
-    actualizarUsuario,
+    crearUsuario
 }
+

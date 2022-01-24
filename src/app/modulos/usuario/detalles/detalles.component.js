@@ -13,7 +13,7 @@ export default function Detalles(props) {
     const { usuario } = props;
     
     return (
-        <Plantilla className="seccion" titulo="Detalles" >
+        <Plantilla className="contenido" titulo="Detalles" >
             <Row>
                 <Col xs={12}>
                     <p className="descripcion"> Detalles adicionales del usuario.</p>
