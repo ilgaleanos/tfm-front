@@ -9,7 +9,10 @@ let regexp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0
 /**
  * 
  * @param {*} event 
- * @param {*} hook 
+ * @param {*} usuario 
+ * @param {*} setUsuario 
+ * @param {*} form 
+ * @param {*} setForm 
  */
 const fijarCorreo = (event, usuario, setUsuario, form, setForm) => {
     usuario.correo = event.target.value;
@@ -27,7 +30,10 @@ const fijarCorreo = (event, usuario, setUsuario, form, setForm) => {
 /**
  * 
  * @param {*} event 
- * @param {*} hook 
+ * @param {*} usuario 
+ * @param {*} setUsuario 
+ * @param {*} form 
+ * @param {*} setForm 
  */
 const fijarCampo = (event, usuario, setUsuario, form, setForm) => {
     let campo = event.target.id;

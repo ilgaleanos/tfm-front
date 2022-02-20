@@ -70,15 +70,15 @@ function Navigator() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={invalidarLogin(Login)}></Route>
-          <Route path="/login" element={invalidarLogin(Login)}></Route>
-          <Route path="/validar_otp" element={invalidarLogin(Otp)}></Route>
-          <Route path="/inicio" element={validarUsuario(Inicio)}></Route>
-          <Route path="/usuarios" element={validarUsuario(Usuarios)}></Route>
-          <Route path="/usuario/:id" element={validarUsuario(Usuario)}></Route>
-          <Route path="/usuario_nuevo" element={validarUsuario(UsuarioNuevo)}></Route>
-          <Route path="/usuario_eliminar/:id" element={validarUsuario(UsuarioEliminar)}></Route>
-          <Route path="/dashboard" element={validarUsuario(Dashboard)}></Route>
+          <Route path="/" element={invalidarLogin(Login)} />
+          <Route path="/login" element={invalidarLogin(Login)} />
+          <Route path="/validar_otp" element={invalidarLogin(Otp)} />
+          <Route path="/inicio" element={validarUsuario(Inicio)} />
+          <Route path="/usuarios" element={validarUsuario(Usuarios)} />
+          <Route path="/usuario/:id" element={validarUsuario(Usuario)} />
+          <Route path="/usuario_nuevo" element={validarUsuario(UsuarioNuevo)} />
+          <Route path="/usuario_eliminar/:id" element={validarUsuario(UsuarioEliminar)} />
+          <Route path="/dashboard" element={validarUsuario(Dashboard)} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

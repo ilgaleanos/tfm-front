@@ -1,0 +1,10 @@
+iframe {
+  height: 84vh;
+  width: 100%;
+}
+
+@media (orientation: portrait) {
+  iframe {
+    min-height: 100vh;
+  }
+}
