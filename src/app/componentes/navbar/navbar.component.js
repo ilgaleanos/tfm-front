@@ -36,6 +36,9 @@ function NavBar() {
                             <button className="boton-primario" key="Dashboard" onClick={() => { cambioRutaPermisos(navegar, '/dashboard') }} sx={{ my: 2, display: 'block' }}>
                                 <Box sx={{ display: { xs: 'none', md: 'inline' } }}><i className="fas fa-tachometer-alt"></i></Box> &nbsp; Dashboard
                             </button>
+                            <button className="boton-primario" key="Modelos" onClick={() => { cambioRutaPermisos(navegar, '/modelos') }} sx={{ my: 2, display: 'block' }}>
+                                <Box sx={{ display: { xs: 'none', md: 'inline' } }}><i className="fas fa-file-code"></i></Box> &nbsp; Modelos
+                            </button>
                         </Box>
 
                         {/* LOGOUT */}

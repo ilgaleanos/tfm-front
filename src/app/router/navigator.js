@@ -19,6 +19,7 @@ import Dashboard from '../modulos/dashboard/dashboard.component';
 import Usuario from '../modulos/usuario/usuario.component';
 import UsuarioNuevo from '../modulos/usuario_nuevo/usuario_nuevo.component';
 import UsuarioEliminar from '../modulos/usuario_eliminar/usuario_eliminar.component';
+import Modelos from '../modulos/modelos/modelos.component';
 
 
 
@@ -79,6 +80,7 @@ function Navigator() {
           <Route path="/usuario_nuevo" element={validarUsuario(UsuarioNuevo)} />
           <Route path="/usuario_eliminar/:id" element={validarUsuario(UsuarioEliminar)} />
           <Route path="/dashboard" element={validarUsuario(Dashboard)} />
+          <Route path="/modelos" element={validarUsuario(Modelos)} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

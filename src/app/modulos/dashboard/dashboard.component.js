@@ -1,17 +1,20 @@
 import React from 'react';
-// import { useNavigate } from 'react-router-dom';
 
 import Plantilla from '../../componentes/plantilla/plantilla.component';
+import { obtenerPermisos } from './dashboard.logic';
 
 import './dashboard.styles.css'
 
 
 function Dashboard() {
-    // const navegar = useNavigate();
+    const permisos = obtenerPermisos();
 
     /**
-     * Hooks para dashboard
+     * Validamos los permisos
      */
+    if (!permisos['p-3'] || permisos['p-3'] % 2 !== 0) {
+        return null
+    }
 
 
     /**
