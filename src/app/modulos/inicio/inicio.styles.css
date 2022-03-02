@@ -1,0 +1,10 @@
+.titulo-intro{
+    padding-top: 5%;
+    text-align: center;
+}
+
+.introduccion {
+  padding: 5% 15% 5% 15%;
+  text-align: justify;
+  text-justify: inter-word;
+}
