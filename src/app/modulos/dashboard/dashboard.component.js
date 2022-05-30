@@ -23,7 +23,7 @@ function Dashboard() {
     return (
         <Plantilla >
             <div className="center">
-                <iframe title='correlaciones' scrolling="no" src="https://datastudio.google.com/embed/reporting/2c564995-3f8e-4ad5-a28b-dd850664abeb/page/ymUkC" frameBorder="0" allowFullScreen></iframe>
+                <iframe title='correlaciones' scrolling="no" src="https://datastudio.google.com/embed/reporting/2c564995-3f8e-4ad5-a28b-dd850664abeb/page/p_34w584hcsc" frameBorder="0" allowFullScreen></iframe>
             </div>
         </Plantilla>
     );
